@@ -30,7 +30,10 @@ OFFICE_LOGIN_URL = 'https://yxrz.ouc.edu.cn/a70.htm'
 SUCCESS_FLAG = '<!--Dr.COMWebLoginID_3.htm-->'
 SLEEP_INTERVAL = 120  # second
 ESSID_LIST = ['OUC-WIFI', 'OUC-AUTO']
-HEADERS = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_1) AppleWebKit/601.2.7 (KHTML, like Gecko) Version/9.0.1 Safari/601.2.7'}
+HEADERS = {
+    'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_1) AppleWebKit/601.2.7 (KHTML, like Gecko) Version/9.0.1 Safari/601.2.7',
+    'Connection': 'close',
+}
 
 network = 'oucwifi'
 requests.packages.urllib3.disable_warnings()
@@ -133,7 +136,7 @@ def is_offline():
     global network
 
     try:
-        r = sess.get(TEST_URL, allow_redirects=False, timeout=4)
+        r = sess.get(TEST_URL, allow_redirects=False, timeout=10)
     except Exception, e:
         logging.debug('Error test offline %s %s', str(type(e)), str(e))
         network = 'oucwifi'
