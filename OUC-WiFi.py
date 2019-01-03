@@ -41,12 +41,12 @@ requests.packages.urllib3.disable_warnings()
 if DEBUG:
     logging.basicConfig(level=logging.DEBUG,
                         format='%(asctime)s(%(lineno)d) [%(levelname)s]:%(message)s',
-                        datefmt='%Y %b %d %H:%M:%S',
+                        datefmt='%Y-%m-%d %H:%M:%S',
                         stream=sys.stdout)
 else:
     logging.basicConfig(level=logging.INFO,
                         format='%(asctime)s %(message)s',
-                        datefmt='%Y %b %d %H:%M:%S',
+                        datefmt='%Y-%m-%d %H:%M:%S',
                         stream=sys.stdout)
 
 if os.environ.has_key('ALL_PROXY'):
