@@ -238,7 +238,10 @@ def android_wait_wifi(timeout):
             elif info.startswith('[type: WIFI'):
                 if 'CONNECTED/CONNECTED' in info:
                     ssid = droid.wifiGetConnectionInfo().result[u'ssid']
-                    ssid = json.loads(ssid)
+                    try:
+                        ssid = json.loads(ssid)
+                    except ValueError as e:
+                        ssid = '<unknown ssid>'
                     log_and_toast('Connected to: ' + ssid.encode('utf-8'))
                     if ssid in ESSID_LIST:
                         return
