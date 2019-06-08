@@ -22,7 +22,7 @@ except ImportError:
 
 DEBUG = False
 CONFIG_FILE = 'config.json'
-TEST_URL = 'http://220.181.57.216/favicon.ico'
+TEST_URL = 'http://123.125.114.144/robots.txt'
 WIFI_OFFLINE_FLAG = '10.100.29.2/a79.htm'
 WIFI_LOGIN_URL = 'http://10.100.29.2:801/eportal/'
 OFFICE_OFFLINE_FLAG = 'http://10.81.2.6'
