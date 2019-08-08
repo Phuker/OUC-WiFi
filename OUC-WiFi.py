@@ -135,10 +135,16 @@ def sleep(second):
 def is_offline():
     global network
 
-    try:
-        r = sess.get(TEST_URL, allow_redirects=False, timeout=10)
-    except Exception, e:
-        logging.debug('Error test offline %s %s', str(type(e)), str(e))
+    retry_count = 3
+    retry_interval = 2
+    for i in xrange(retry_count):
+        try:
+            r = sess.get(TEST_URL, allow_redirects=False, timeout=10)
+            break
+        except Exception as e:
+            logging.debug('Error test offline %s %s', str(type(e)), str(e))
+            time.sleep(retry_interval)
+    else:
         network = 'oucwifi'
         return True
 
