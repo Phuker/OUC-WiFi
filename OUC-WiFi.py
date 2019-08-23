@@ -1,9 +1,11 @@
 #!/usr/bin/env python
 # encoding: utf-8
-# login ouc-wifi
-#
-# --once run only once
-#
+
+"""
+login OUC-WIFI and OUC-AUTO
+
+--once run only once
+"""
 
 import os
 import re
@@ -38,16 +40,31 @@ HEADERS = {
 network = 'oucwifi'
 requests.packages.urllib3.disable_warnings()
 
+
 if DEBUG:
-    logging.basicConfig(level=logging.DEBUG,
-                        format='%(asctime)s(%(lineno)d) [%(levelname)s]:%(message)s',
-                        datefmt='%Y-%m-%d %H:%M:%S',
-                        stream=sys.stdout)
+    logging_level = logging.DEBUG
 else:
-    logging.basicConfig(level=logging.INFO,
-                        format='%(asctime)s %(message)s',
-                        datefmt='%Y-%m-%d %H:%M:%S',
-                        stream=sys.stdout)
+    logging_level = logging.INFO
+
+if sys.stdout.isatty() and os.name == 'posix':
+    logging_format = '\033[1m%(asctime)s [%(levelname)s]:\033[0m%(message)s'
+    logging.addLevelName(logging.CRITICAL, '\033[31m{}\033[39m'.format(logging.getLevelName(logging.CRITICAL)))
+    logging.addLevelName(logging.ERROR, '\033[31m{}\033[39m'.format(logging.getLevelName(logging.ERROR)))
+    logging.addLevelName(logging.WARNING, '\033[33m{}\033[39m'.format(logging.getLevelName(logging.WARNING)))
+    logging.addLevelName(logging.INFO, '\033[36m{}\033[39m'.format(logging.getLevelName(logging.INFO)))
+    logging.addLevelName(logging.DEBUG, '\033[36m{}\033[39m'.format(logging.getLevelName(logging.DEBUG)))
+else:
+    logging_format = '%(asctime)s [%(levelname)s]:%(message)s'
+
+logging_date_format = '%Y-%m-%d %H:%M:%S'
+
+logging.basicConfig(
+    level=logging_level,
+    format=logging_format,
+    datefmt=logging_date_format,
+    stream=sys.stdout,
+)
+
 
 if os.environ.has_key('ALL_PROXY'):
     __ = os.environ['ALL_PROXY']
