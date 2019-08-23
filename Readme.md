@@ -1,23 +1,25 @@
-# OUC-WiFi 自动登录  
+# OUC-WiFi 自动登录
 
-## Introduction  
+## Introduction
 
 支持 OUC-WIFI，OUC-AUTO 和办公区有线网络。  
 第一次运行需要输入账号密码，将会保存在 `config.json` 中。  
 注：代码经过长期打补丁，very ugly， don't read it.  
 
-## Requirements  
+## Requirements
 
 	requests
 
 ## Usage
 
-	python OUC-WiFi.py
-	python OUC-WiFi.py --once
+```shell
+python OUC-WiFi.py
+python OUC-WiFi.py --once
+```
 
-## Android  
+## Android
 
-### 下载安装 QPython 解释器  
+### 下载安装 QPython 解释器
 
 <a href='https://play.google.com/store/apps/details?id=org.qpython.qpy&pcampaignid=MKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1'><img alt='下载应用，请到 Google Play' src='https://play.google.com/intl/en_us/badges/images/generic/zh-cn_badge_web_generic.png' style="height:4em" height="70px" /></a>  
 
@@ -27,7 +29,9 @@
 
 安装依赖库 `requests`：`QPYPI`->`工具`->`QPYPI客户端`，运行：  
 
-	pip install --upgrade requests
+```shell
+pip install --upgrade requests
+```
 
 ### 下载脚本  
 
@@ -48,7 +52,9 @@
 下载最新版 Python 2。  
 安装依赖库：  
 
-	pip install --upgrade requests
+```shell
+pip install --upgrade requests
+```
 
 ### 下载脚本  
 
@@ -62,11 +68,21 @@
 
 You are a pro, you know what to do.  
 
+```shell
+git clone https://github.com/Phuker/OUC-WiFi.git
+pip install --upgrade -r requirements.txt
+python OUC-WiFi.py
+python OUC-WiFi.py --once
+```
 
-	git clone ......
-	pip install --upgrade -r requirements.txt
-	python OUC-WiFi.py
-	python OUC-WiFi.py --once
+## docker
+
+```shell
+git clone https://github.com/Phuker/OUC-WiFi.git
+pip install --upgrade -r requirements.txt
+python OUC-WiFi.py --once    # To create config.json
+docker-compose up -d
+```
 
 ## FAQ
 

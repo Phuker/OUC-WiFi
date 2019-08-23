@@ -69,7 +69,7 @@ logging.basicConfig(
 if os.environ.has_key('ALL_PROXY'):
     __ = os.environ['ALL_PROXY']
     PROXIES = {'http': __, 'https': __}
-    logging.info('Using proxy: %s', repr(__))
+    logging.warn('Using proxy: %s', repr(__))
 else:
     PROXIES = None
 
@@ -97,7 +97,11 @@ def get_android_obj():
 
 
 def generate_config():
-    logging.info('Please input your id and password for the first time.')
+    logging.warn('Please input your id and password for the first time.')
+    if not sys.stdin.isatty():
+        logging.critical('Please run in a tty to input user id and password,')
+        logging.critical('Or create config.json manually.')
+        sys.exit(1)
 
     while True:
         userid = raw_input('Input id: ').strip()
