@@ -5,3 +5,4 @@ services:
       context: .
     volumes:
       - .:/opt/app:ro
+    restart: unless-stopped

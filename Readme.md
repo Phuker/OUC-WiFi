@@ -77,6 +77,8 @@ python OUC-WiFi.py --once
 
 ## docker
 
+This service will always restart unless stopped. Edit `docker-compose.yml` to change this behavior.
+
 ```shell
 git clone https://github.com/Phuker/OUC-WiFi.git
 pip install --upgrade -r requirements.txt
