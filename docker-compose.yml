@@ -1,8 +1,8 @@
 version: '3'
 services:
-  bot:
-    build: 
-      context: .
-    volumes:
-      - .:/opt/app:ro
-    restart: unless-stopped
+    bot:
+        build: 
+            context: .
+        volumes:
+            - .:/opt/app:ro
+        restart: unless-stopped
