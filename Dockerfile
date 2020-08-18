@@ -1,19 +1,12 @@
-FROM python:2
+FROM python:2-alpine
 
 RUN echo 'setup...' && \
 #
-# china mirror
-timeout 4 bash -c "</dev/tcp/google.com/443" || \
-{ \
-    echo 'In China, use mirror...' && \
-    #
-    # pypi
-    echo 'change pypi source' && \
-    python -m pip install -i https://pypi.tuna.tsinghua.edu.cn/simple pip -U && \
-    python -m pip config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple && \
-    #
-    echo 'Done setting mirror.'; \
-} && \
+# no need to check whether in China
+# pypi china mirror
+echo 'change pypi source' && \
+python -m pip install -i https://pypi.tuna.tsinghua.edu.cn/simple pip -U && \
+python -m pip config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple && \
 #
 # install dependencies
 pip install --upgrade requests && \
